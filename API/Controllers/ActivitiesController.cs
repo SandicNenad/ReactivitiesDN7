@@ -12,6 +12,7 @@ namespace API.Controllers
         {
             _context = context;            
         }
+        // temp commit
 
         [HttpGet] //api/activities
         public async Task<ActionResult<List<Activity>>> GetActivities() 
