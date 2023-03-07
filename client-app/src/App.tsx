@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
-import { Button, Header } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
 import List from 'semantic-ui-react/dist/commonjs/elements/List';
 
 function App() {
