@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './App.css';
 import axios from 'axios';
 import { Header } from 'semantic-ui-react';
 import List from 'semantic-ui-react/dist/commonjs/elements/List';
