@@ -3,23 +3,26 @@ import { Activity } from '../models/activity';
 import NavBar from './NavBar';
 import { Container } from 'semantic-ui-react';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
-import {v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid'
 import agent from '../api/agent';
+import LoadingComponent from './LoadingComponent';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<Activity | undefined>(undefined);
   const [editMode, setEditMode] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     agent.Activities.list()
       .then(response => {
-        let activities: Activity[] =[];
+        let activities: Activity[] = [];
         response.forEach(activity => {
           activity.date = activity.date.split('T')[0];
           activities.push(activity);
         })
         setActivities(activities);
+        setLoading(false);
       })
   }, [])
 
@@ -40,17 +43,19 @@ function App() {
     setEditMode(false);
   }
 
-  function handleDeleteActivity(id: string){
+  function handleDeleteActivity(id: string) {
     setActivities([...activities.filter(x => x.id !== id)])
   }
 
   function handleCreateOrEditActivity(activity: Activity) {
     activity.id
       ? setActivities([...activities.filter(x => x.id !== activity.id), activity])
-      : setActivities([...activities, {...activity, id: uuid()}]);
+      : setActivities([...activities, { ...activity, id: uuid() }]);
     setEditMode(false);
     setSelectedActivity(activity);
   }
+
+  if (loading) return <LoadingComponent content='Loading app' />
 
   return (
     <>
