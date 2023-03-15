@@ -26,7 +26,7 @@ export default class ActivityStore {
             this.setLoadingInitial(false);
         } catch (error) {
             console.log(error);
-            this.setLoadingInitial(false);
+            this.setLoadingInitial(false);            
         }
     }
 
@@ -85,6 +85,22 @@ export default class ActivityStore {
             runInAction(() => {
                 this.loading = false;
             })
+        }
+    }
+
+    deleteActivity = async (id: string) => {
+        this.loading = true;
+        try {
+            await agent.Activities.delete(id);
+            runInAction(() => {
+                this.activities = [...this.activities.filter(a => a.id !== id)];
+                if (this.selectedActivity?.id === id)
+                    this.cancelSelectedActivity();
+                this.loading = false;
+            })
+        } catch (error) {
+            console.log(error);
+            this.loading = false;
         }
     }
 }
