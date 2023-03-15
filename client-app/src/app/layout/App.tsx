@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Activity } from '../models/activity';
+import React, { useEffect } from 'react';
 import NavBar from './NavBar';
 import { Container } from 'semantic-ui-react';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
-import agent from '../api/agent';
 import LoadingComponent from './LoadingComponent';
 import { useStore } from '../stores/store';
 import { observer } from 'mobx-react-lite';
