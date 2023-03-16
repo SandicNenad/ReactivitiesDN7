@@ -9,8 +9,7 @@ import ActivityList from './ActivityList';
 
 export default observer(function ActivityDashboard() {
 
-    const { activityStore } = useStore();
-    const { selectedActivity, editMode } = activityStore;
+    const { activityStore } = useStore();    
 
     useEffect(() => {
         activityStore.loadActivities();
@@ -24,10 +23,7 @@ export default observer(function ActivityDashboard() {
                 <ActivityList />
             </Grid.Column>
             <Grid.Column width='6'>
-                {selectedActivity && !editMode &&
-                    <ActivityDetails />}
-                {editMode &&
-                    <ActivityForm />}
+                <h2>Activity filters </h2>
             </Grid.Column>
         </Grid>
     )
