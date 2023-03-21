@@ -14,7 +14,7 @@ namespace Application.Activities
         public class Handler : IRequestHandler<Query, Activity>
         {
             private readonly DataContext _context;
-            
+
             public Handler(DataContext context)
             {
                 _context = context;
@@ -22,7 +22,12 @@ namespace Application.Activities
 
             public async Task<Activity> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Activities.FindAsync(request.Id);
+                var activity = await _context.Activities.FindAsync(request.Id);
+
+                if (activity == null)
+                    throw new Exception("Activity not found");
+
+                return activity;
             }
         }
     }
