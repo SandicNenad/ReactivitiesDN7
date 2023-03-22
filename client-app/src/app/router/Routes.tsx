@@ -3,17 +3,19 @@ import ActivityDashboard from "../../features/activities/dashboard/ActivityDashb
 import ActivityDetails from "../../features/activities/details/ActivityDetails";
 import ActivityForm from "../../features/activities/form/ActivityForm";
 import HomePage from "../../features/activities/home/HomePage";
+import TestErrors from "../../features/errors/TestError";
 import App from "../layout/App";
 
 export const routes: RouteObject[] = [
     {
         path: '/',
         element: <App />,
-        children: [            
+        children: [
             { path: 'activities', element: <ActivityDashboard /> },
             { path: 'activities/:id', element: <ActivityDetails /> },
             { path: 'createActivity', element: <ActivityForm key='create' /> },
             { path: 'manage/:id', element: <ActivityForm key='manage' /> },
+            { path: 'errors', element: <TestErrors /> },
         ]
     }
 ]
