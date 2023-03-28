@@ -90,6 +90,5 @@ namespace API.Controllers
                 Username = user.UserName
             };
         }
-        //----- End of section 12 - Identity -----
     }
 }
