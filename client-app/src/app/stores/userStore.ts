@@ -27,9 +27,17 @@ export default class UserStore {
     }
 
     logout = () => {
-        store.commonStore.setToken(null);
-        localStorage.removeItem('jwt');
+        store.commonStore.setToken(null);        
         this.user = null;
         router.navigate('/');
+    }
+
+    getuser = async () => {
+        try {
+            const user = await agent.Account.current();
+            runInAction(() => this.user = user);
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
